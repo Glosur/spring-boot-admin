@@ -103,6 +103,12 @@ class Instance {
     });
   }
 
+  async fetchRoutes() {
+    return this.axios.get(uri`actuator/routes/details`, {
+      headers: {'Accept': actuatorMimeTypes}
+    });
+  }
+
   async hasEnvManagerSupport() {
     const response = await this.axios.options(uri`actuator/env`);
     return response.headers['allow'] && response.headers['allow'].includes('POST');
